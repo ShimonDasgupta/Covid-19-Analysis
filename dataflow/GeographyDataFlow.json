@@ -1,0 +1,49 @@
+{
+	"name": "GeographyDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Geography",
+						"type": "DatasetReference"
+					},
+					"name": "Geography"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "GeographyParquet",
+						"type": "DatasetReference"
+					},
+					"name": "GeographySink"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Country as string,",
+				"          CountryCode as string,",
+				"          Latitude as decimal(10,5),",
+				"          Longitude as decimal(10,5)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Geography",
+				"Geography sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:['geography.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> GeographySink"
+			]
+		}
+	}
+}

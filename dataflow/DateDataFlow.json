@@ -1,0 +1,103 @@
+{
+	"name": "DateDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DatesFromAzureSQL",
+						"type": "DatasetReference"
+					},
+					"name": "DatesFromAzureSQL"
+				},
+				{
+					"dataset": {
+						"referenceName": "SrcSQLServer",
+						"type": "DatasetReference"
+					},
+					"name": "DatesFromSrcSQLServer"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Dates",
+						"type": "DatasetReference"
+					},
+					"name": "DatesSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Dates"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          DateKey as integer,",
+				"          FullDate as date,",
+				"          isWeekDay as boolean,",
+				"          DayOfWeek as integer,",
+				"          DayOfMonth as integer,",
+				"          DayOfQuarter as integer,",
+				"          DayOfYear as integer,",
+				"          DayName as string,",
+				"          WeekOfYear as integer,",
+				"          WeekName as string,",
+				"          MonthOfYear as integer,",
+				"          MonthName as string,",
+				"          CalendarQuarter as integer,",
+				"          CalendarQuarterName as string,",
+				"          CalendarYear as integer,",
+				"          FiscalMonth as integer,",
+				"          FiscalMonthName as string,",
+				"          FiscalQuarter as integer,",
+				"          FiscalQuarterName as string,",
+				"          FiscalYear as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> DatesFromAzureSQL",
+				"source(output(",
+				"          DateKey as integer,",
+				"          FullDate as date,",
+				"          isWeekDay as boolean,",
+				"          DayOfWeek as integer,",
+				"          DayOfMonth as integer,",
+				"          DayOfQuarter as integer,",
+				"          DayOfYear as integer,",
+				"          DayName as string,",
+				"          WeekOfYear as integer,",
+				"          WeekName as string,",
+				"          MonthOfYear as integer,",
+				"          MonthName as string,",
+				"          CalendarQuarter as integer,",
+				"          CalendarQuarterName as string,",
+				"          CalendarYear as integer,",
+				"          FiscalMonth as integer,",
+				"          FiscalMonthName as string,",
+				"          FiscalQuarter as integer,",
+				"          FiscalQuarterName as string,",
+				"          FiscalYear as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> DatesFromSrcSQLServer",
+				"DatesFromAzureSQL, DatesFromSrcSQLServer union(byName: true)~> Dates",
+				"Dates sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     partitionFileNames:['dates.parquet'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> DatesSink"
+			]
+		}
+	}
+}

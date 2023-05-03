@@ -1,0 +1,496 @@
+{
+	"name": "cosmosDB",
+	"properties": {
+		"activities": [
+			{
+				"name": "cosmosDB",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "CosmosDbSqlApiSource",
+						"preferredRegions": []
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['CountryName']"
+								},
+								"sink": {
+									"path": "countryname"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CountryCode']"
+								},
+								"sink": {
+									"path": "countrycode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['RegionName']"
+								},
+								"sink": {
+									"path": "RegionName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['RegionCode']"
+								},
+								"sink": {
+									"path": "RegionCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Jurisdiction']"
+								},
+								"sink": {
+									"path": "Jurisdiction"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Date']"
+								},
+								"sink": {
+									"path": "date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C1_School closing']"
+								},
+								"sink": {
+									"path": "c1_school_closing"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C1_Flag']"
+								},
+								"sink": {
+									"path": "c1_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C2_Workplace closing']"
+								},
+								"sink": {
+									"path": "c2_workplace_closing"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C2_Flag']"
+								},
+								"sink": {
+									"path": "c2_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C3_Cancel public events']"
+								},
+								"sink": {
+									"path": "c3_cancel_public_events"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C3_Flag']"
+								},
+								"sink": {
+									"path": "c3_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C4_Restrictions on gatherings']"
+								},
+								"sink": {
+									"path": "c4_restrictions_on_gatherings"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C4_Flag']"
+								},
+								"sink": {
+									"path": "c4_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C5_Close public transport']"
+								},
+								"sink": {
+									"path": "c5_close_public_transport"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C5_Flag']"
+								},
+								"sink": {
+									"path": "c5_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C6_Stay at home requirements']"
+								},
+								"sink": {
+									"path": "c6_stay_at_home_requirements"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C6_Flag']"
+								},
+								"sink": {
+									"path": "c6_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C7_Restrictions on internal movement']"
+								},
+								"sink": {
+									"path": "c7_restrictions_on_internal_movement"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C7_Flag']"
+								},
+								"sink": {
+									"path": "c7_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['C8_International travel controls']"
+								},
+								"sink": {
+									"path": "c8_international_travel_controls"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E1_Income support']"
+								},
+								"sink": {
+									"path": "e1_income_support"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E1_Flag']"
+								},
+								"sink": {
+									"path": "e1_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E2_Debt contract relief']"
+								},
+								"sink": {
+									"path": "e2_debt/contract_relief"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E3_Fiscal measures']"
+								},
+								"sink": {
+									"path": "e3_fiscal_measures"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E4_International support']"
+								},
+								"sink": {
+									"path": "e4_international_support"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H1_Public information campaigns']"
+								},
+								"sink": {
+									"path": "h1_public_information_campaigns"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H1_Flag']"
+								},
+								"sink": {
+									"path": "h1_flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H2_Testing policy']"
+								},
+								"sink": {
+									"path": "h2_testing_policy"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H3_Contact tracing']"
+								},
+								"sink": {
+									"path": "h3_contact_tracing"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H4_Emergency investment in healthcare']"
+								},
+								"sink": {
+									"path": "h4_emergency_investment_in_healthcare"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H5_Investment in vaccines']"
+								},
+								"sink": {
+									"path": "h5_investment_in_vaccines"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H6_Facial Coverings']"
+								},
+								"sink": {
+									"path": "H6_Facial Coverings"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H6_Flag']"
+								},
+								"sink": {
+									"path": "H6_Flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H7_Vaccination policy']"
+								},
+								"sink": {
+									"path": "H7_Vaccination policy"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H7_Flag']"
+								},
+								"sink": {
+									"path": "H7_Flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H8_Protection of elderly people']"
+								},
+								"sink": {
+									"path": "H8_Protection of elderly people"
+								}
+							},
+							{
+								"source": {
+									"path": "$['H8_Flag']"
+								},
+								"sink": {
+									"path": "H8_Flag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['M1_Wildcard']"
+								},
+								"sink": {
+									"path": "M1_Wildcard"
+								}
+							},
+							{
+								"source": {
+									"path": "$['StringencyIndex']"
+								},
+								"sink": {
+									"path": "stringencyindex"
+								}
+							},
+							{
+								"source": {
+									"path": "$['StringencyIndexForDisplay']"
+								},
+								"sink": {
+									"path": "stringencyindexfordisplay"
+								}
+							},
+							{
+								"source": {
+									"path": "$['StringencyLegacyIndex']"
+								},
+								"sink": {
+									"path": "StringencyLegacyIndex"
+								}
+							},
+							{
+								"source": {
+									"path": "$['StringencyLegacyIndexForDisplay']"
+								},
+								"sink": {
+									"path": "StringencyLegacyIndexForDisplay"
+								}
+							},
+							{
+								"source": {
+									"path": "$['GovernmentResponseIndex']"
+								},
+								"sink": {
+									"path": "GovernmentResponseIndex"
+								}
+							},
+							{
+								"source": {
+									"path": "$['GovernmentResponseIndexForDisplay']"
+								},
+								"sink": {
+									"path": "GovernmentResponseIndexForDisplay"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ContainmentHealthIndex']"
+								},
+								"sink": {
+									"path": "ContainmentHealthIndex"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ContainmentHealthIndexForDisplay']"
+								},
+								"sink": {
+									"path": "ContainmentHealthIndexForDisplay"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EconomicSupportIndex']"
+								},
+								"sink": {
+									"path": "EconomicSupportIndex"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EconomicSupportIndexForDisplay']"
+								},
+								"sink": {
+									"path": "EconomicSupportIndexForDisplay"
+								}
+							},
+							{
+								"source": {
+									"path": "$['id']"
+								},
+								"sink": {
+									"path": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_rid']"
+								},
+								"sink": {
+									"path": "_rid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_self']"
+								},
+								"sink": {
+									"path": "_self"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_etag']"
+								},
+								"sink": {
+									"path": "_etag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_attachments']"
+								},
+								"sink": {
+									"path": "_attachments"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_ts']"
+								},
+								"sink": {
+									"path": "_ts"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CosmosDbNoSqlContainer",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "JsonCosmos",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-04-12T14:21:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
