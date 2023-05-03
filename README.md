@@ -1,1 +1,1 @@
-# Covid-19-Analysis
+analyzing different covid policies in Power BI
