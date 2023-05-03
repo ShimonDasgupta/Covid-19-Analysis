@@ -1,0 +1,17 @@
+{
+	"name": "SQL Policies",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'challenge2_team10storageacc_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [challenge2_team10storageacc_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://challenge2@team10storageacc.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE dbo.factPolicies (\n\t[countryname] nvarchar(4000),\n\t[countrycode] nvarchar(4000),\n\t[RegionName] nvarchar(4000),\n\t[RegionCode] nvarchar(4000),\n\t[Jurisdiction] nvarchar(4000),\n\t[date] nvarchar(4000),\n\t[c1schoolclosing] int,\n\t[c1flag] int,\n\t[c2workplaceclosing] int,\n\t[c2flag] int,\n\t[c3flag] int,\n\t[c4restrictionsongatherings] int,\n\t[c4flag] int,\n\t[c5closepublictransport] int,\n\t[c5flag] int,\n\t[c6stayathomerequirements] int,\n\t[c6flag] int,\n\t[c7restrictionsoninternalmovement] int,\n\t[c7flag] int,\n\t[c8internationaltravelcontrols] int,\n\t[e1incomesupport] int,\n\t[e1flag] int,\n\t[e2debt/contractrelief] int,\n\t[e3fiscalmeasures] int,\n\t[e4internationalsupport] int,\n\t[h1publicinformationcampaigns] int,\n\t[h1flag] int,\n\t[h2testingpolicy] int,\n\t[h3contacttracing] int,\n\t[h4emergencyinvestment_in_healthcare] int,\n\t[h5investmentinvaccines] int,\n\t[H6FacialCoverings] int,\n\t[H6Flag] int,\n\t[H7Vaccinationpolicy] int,\n\t[H7Flag] int,\n\t[H8Protectionofelderlypeople] int,\n\t[H8Flag] int,\n\t[M1Wildcard] int,\n\t[stringencyindex] int,\n\t[stringencyindexfordisplay] int,\n\t[StringencyLegacyIndex] int,\n\t[StringencyLegacyIndexForDisplay] int,\n\t[GovernmentResponseIndex] int,\n\t[GovernmentResponseIndexForDisplay] int,\n\t[ContainmentHealthIndex] int,\n\t[ContainmentHealthIndexForDisplay] int,\n\t[EconomicSupportIndex] int,\n\t[EconomicSupportIndexForDisplay] int,\n\t[id] nvarchar(4000),\n\t[rid] nvarchar(4000),\n\t[self] nvarchar(4000),\n\t[etag] nvarchar(4000),\n\t[attachments] nvarchar(4000),\n\t[ts] int\n\t)\n\tWITH (\n\tLOCATION = 'policy.parquet',\n\tDATA_SOURCE = [challenge2_team10storageacc_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\n\nSELECT * FROM dbo.factPolicies\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "Covid19",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
