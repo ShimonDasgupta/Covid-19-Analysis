@@ -99,7 +99,7 @@
 				"          c1flag = c1_flag,",
 				"          c2workplaceclosing = c2_workplace_closing,",
 				"          c2flag = c2_flag,",
-				"          c2workplaceclosing = c3_cancel_public_events,",
+				"          c3cancelpublicevents = c3_cancel_public_events,",
 				"          c3flag = c3_flag,",
 				"          c4restrictionsongatherings = c4_restrictions_on_gatherings,",
 				"          c4flag = c4_flag,",
